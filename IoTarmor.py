@@ -18,7 +18,6 @@ import logging
 
 # Import custom modules
 from utils import *
-import sys
 from brute_Force import SSH_BruteForcer, FTP_BruteForcer, Telnet_BruteForcer, HTTP_BruteForcer
 from connection import db_class
 from exploits import h264_dvr_rce, rom_0, Cisco_PVC_2300, Humax_HG100R, dlink, tv_ip410wn
@@ -36,7 +35,7 @@ O = '\033[33m'
 def shodan_iot():
     iot = []
     # Use Shodan API key to initialize Shodan API client
-    api_key = "Skya2na1K0B2ZJOBFGqQTrmoHGGyX003"
+    api_key = "bhnPYTGRAYcq1lR5xmgGiQcPzxZqaTa5"
     api = shodan.Shodan(api_key)
     try:
         # Use Shodan API to search for IoT devices
@@ -117,7 +116,6 @@ if __name__=='__main__':
     db.print_db_results(rows)
     device_service_list, device_port_list = db.exctract_port_ip(tab_name, rows)
     db.close_db()
-    iot_list=iot_list+shodan_iot()
     iot_list = IoTarmor(device_port_list, device_service_list)
     for iot in sorted(list(set(iot_list))):
         logging.info(G+iot+W)
